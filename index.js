@@ -31,12 +31,11 @@ const SECRET = process.env.JWT_SECRET; //Use environment variable
 //You need to first import raw file http, and wrap it insid eexpress, as express can only handle http requests and not websocket, and http can handle both
 //create http raw server
 
-const pool = new Pool({ //all the details to talk to DB
-    user: process.env.DATABASE_USER,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT,
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false,
+    },
 })
 
 
