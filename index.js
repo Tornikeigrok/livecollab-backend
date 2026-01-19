@@ -38,6 +38,15 @@ const pool = new Pool({
     },
 })
 
+// Test database connection
+pool.query('SELECT NOW()')
+  .then(res => {
+    console.log('✅ DB connected at:', res.rows[0]);
+  })
+  .catch(err => {
+    console.error('❌ DB connection failed:', err);
+  });
+
 
 app.post('/register', async(req, res)=>{
     const {email, password, first, last} = req.body; //incoming data and extracts email and password from it
